@@ -10,17 +10,17 @@ def convert_ipynb_to_py(input_path, output_path):
     :param output_path: Path to save the converted .py file
     """
     try:
-        # Read the .ipynb file
+        # For reading the .ipynb file
         with open(input_path, 'r', encoding='utf-8') as file:
             notebook_content = nbformat.read(file, as_version=4)
 
-        # Create an instance of PythonExporter
+        # Creating an instance of PythonExporter
         python_exporter = PythonExporter()
 
-        # Convert notebook content to Python code
+        # To convert the notebook's content to Python code
         python_code, _ = python_exporter.from_notebook_node(notebook_content)
 
-        # Write the Python code to a .py file
+        # Writing the Python code to a .py file
         with open(output_path, 'w', encoding='utf-8') as py_file:
             py_file.write(python_code)
 
@@ -37,15 +37,15 @@ def convert_py_to_ipynb(input_path, output_path):
     :param output_path: Path to save the converted .ipynb file
     """
     try:
-        # Read the Python file content
+        # For reading the Python(.py) file's content
         with open(input_path, 'r', encoding='utf-8') as file:
             python_code = file.read()
 
-        # Create a new notebook node
+        # Creating a new notebook node
         notebook_node = nbformat.v4.new_notebook()
         notebook_node.cells.append(nbformat.v4.new_code_cell(python_code))
 
-        # Write the notebook node to an .ipynb file
+        # To write the notebook node to an .ipynb file
         with open(output_path, 'w', encoding='utf-8') as ipynb_file:
             nbformat.write(notebook_node, ipynb_file)
 
